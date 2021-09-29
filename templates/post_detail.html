@@ -1,10 +1,15 @@
 <!-- templates/post_detail.html -->
 {% extends 'base.html' %}
-{% block content %}
-<div class="post-entry">
+{% block page_header %}
 <h2>{{ object.title }}</h2>
-<p>{{ object.body }}</p>
+{% endblock page_header %}
+
+{% block content %}
+<div class="card mb-3">
+<h4 class="card-header">
+<div class="card-body">
+{{ post.body|linebreaks }}
 </div>
-<p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
-<p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+<small><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></small>
+<small><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></small>
 {% endblock content %}

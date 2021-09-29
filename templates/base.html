@@ -1,23 +1,48 @@
 <!-- templates/base.html -->
-{% load static %}
-<html>
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
 <head>
-<title>Chi blog</title>
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>{% block title %}Chi blog{% endblock title %}</title>
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
 </head>
 <body>
-<header>
-<div class="nav-left">
-<h1><a href="{% url 'home' %}">Chi blog</a></h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="{% url 'home' %}">Chi blog</a>
+<button class="navbar-toggler" type="button" data-toggle="collpase" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+{% if user.is_authenticated %}
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+{{ user.username }}</a>
+<div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby=navbarDropdown">
+<a class="dropdown-item" href="{% url 'post_new' %}">New Blog Post</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
 </div>
-<div class="nav-right">
-<a href="{% url 'post_new' %}">+ New Blog Post</a>
+</li>
+</ul>
+{% else %}
+<form class="form-inline ml-auto">
+<a href="{% url 'login' %}" class="btn btn-outline-secondary">Log In</a>
+<a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
+</form>
+{% endif %}
 </div>
-</header>
+</nav>
+<main>
+<div class="container">
 {% block content %}
 {% endblock content %}
 </div>
+</main>
 </body>
 </html>
 

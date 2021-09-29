@@ -5,6 +5,6 @@
 <h1>Delete post</h1>
 <form action="" method="post" >{% csrf_token %}
 <p>Are you sure you want to delete "{{ post.title }}"?</p>
-<input type="submit" value="Confirm">
+<input type="submit" value="Confirm" class="btn btn-danger ml-2">
 </form>
 {% endblock content %}
