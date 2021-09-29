@@ -5,7 +5,7 @@ from .models import Post
 from django.urls import reverse_lazy
 # Create your views here.
 
-class BlogListView(LoginRequiredMixin,ListView):
+class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
 class BlogDetailView(LoginRequiredMixin,DetailView):
