@@ -142,3 +142,5 @@ elif os.environ.get('DEBUG') == 'FALSE':
 # config/settings.py
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home' # new
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
